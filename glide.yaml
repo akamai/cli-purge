@@ -1,6 +1,6 @@
-package: github.com/akamai-open/cli-purge
+package: github.com/akamai/cli-purge
 import:
-- package: github.com/akamai-open/AkamaiOPEN-edgegrid-golang
+- package: github.com/akamai/AkamaiOPEN-edgegrid-golang
 - package: github.com/urfave/cli
   version: ^1.19.1
 - package: github.com/fatih/color

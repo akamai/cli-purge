@@ -1,10 +1,37 @@
-hash: b9b0f1daa4600b5d5e4cd9220c93a6a3e69382a9d630a6e2121446b07ef269ea
-updated: 2017-06-13T12:19:16.166662131-07:00
+hash: 2c98bbc9f5312396de9fd7fcae841e09c36db2afb76ab552f60a261bba2f8f69
+updated: 2017-06-14T16:15:31.594424179-07:00
 imports:
-- name: github.com/akamai-open/AkamaiOPEN-edgegrid-golang
-  version: fa039552bbbb9d4716381dd79faf134baf638094
+- name: github.com/akamai/AkamaiOPEN-edgegrid-golang
+  version: dbb44beac0439f6e7df8cf3b127a14ccd6193acf
+  subpackages:
+  - edgegrid
+  - edgegrid/json
 - name: github.com/fatih/color
   version: 570b54cabe6b8eb0bc2dfce68d964677d63b5260
+- name: github.com/go-ini/ini
+  version: d3de07a94d22b4a0972deb4b96d790c2c0ce8333
+- name: github.com/mattn/go-colorable
+  version: 5411d3eea5978e6cdc258b30de592b60df6aba96
+  repo: https://github.com/mattn/go-colorable
+- name: github.com/mattn/go-isatty
+  version: 57fdcb988a5c543893cc61bce354a6e24ab70022
+  repo: https://github.com/mattn/go-isatty
+- name: github.com/sirupsen/logrus
+  version: 3ec0642a7fb6488f65b06f9040adc67e3990296a
+- name: github.com/tuvistavie/securerandom
+  version: 15512123a948d62f6361bd84818e11f2ad84059a
 - name: github.com/urfave/cli
   version: 0bdeddeeb0f650497d603c4ad7b20cfe685682f6
+- name: github.com/xeipuuv/gojsonpointer
+  version: 6fe8760cad3569743d51ddbb243b26f8456742dc
+- name: github.com/xeipuuv/gojsonreference
+  version: e02fc20de94c78484cd5ffb007f8af96be030a45
+- name: github.com/xeipuuv/gojsonschema
+  version: 0c8571ac0ce161a5feb57375a9cdf148c98c0f70
+- name: golang.org/x/sys
+  version: 9d4e42a20653790449273b3c85e67d6d8bae6e2e
+  subpackages:
+  - unix
+- name: gopkg.in/mattes/go-expand-tilde.v1
+  version: cb884138e64c9a8bf5c7d6106d74b0fca082df0c
 testImports: []

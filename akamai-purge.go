@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/akamai-open/AkamaiOPEN-edgegrid-golang/edgegrid"
+	"github.com/akamai/AkamaiOPEN-edgegrid-golang/edgegrid"
 	"github.com/fatih/color"
 	"github.com/urfave/cli"
 )
