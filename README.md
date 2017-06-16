@@ -22,9 +22,11 @@ for your system, or by cloning this repository and compiling it yourself:
   `git clone https://github.com/akamai/cli-purge.git`
 2. Change to the clone directory:  
   `cd cli-purge`
-3. Compile the binary:  
+3. Install dependencies using [Glide](https://glide.sh):  
+    `glide install`
+4. Compile the binary:  
   `go build -o akamai-purge .` or on windows: `go build -o akamai-purge.exe .`
-4. Move it to your `PATH`
+5. Move it to your `PATH`
 
 ## Usage
 
