@@ -7,6 +7,7 @@ import (
 
 	"github.com/akamai/AkamaiOPEN-edgegrid-golang/edgegrid"
 	"github.com/fatih/color"
+	"github.com/mitchellh/go-homedir"
 	"github.com/urfave/cli"
 )
 
@@ -23,6 +24,8 @@ type CCUv3Purge struct {
 }
 
 func main() {
+	setCliTemplates()
+
 	_, in_cli := os.LookupEnv("AKAMAI_CLI")
 
 	app_name := "akamai-purge"
@@ -33,21 +36,41 @@ func main() {
 	app := cli.NewApp()
 	app.Name = app_name
 	app.HelpName = app_name
-	app.Usage = "Purge Content from the Edge"
+	app.Usage = "A CLI for Purge"
+	app.Description = "Purge Content from the Edge. URLs/CPCodes may be specified as a list of arguments, or piped in via STDIN"
 	app.Version = "0.1.0"
 	app.Copyright = "Copyright (C) Akamai Technologies, Inc"
-	app.Flags = []cli.Flag{
-		cli.StringFlag{
-			Name:  "section",
-			Usage: "Section of the credentials file",
-			Value: "default",
+	app.Authors = []cli.Author{
+		{
+			Name:  "Davey Shafik",
+			Email: "dshafik@akamai.com",
+		},
+		{
+			Name:  "Akamai Developer",
+			Email: "https://developer.akamai.com",
 		},
 	}
 
-	flags := []cli.Flag{
-		cli.StringSliceFlag{
+	dir, _ := homedir.Dir()
+	app.Flags = []cli.Flag{
+		cli.StringFlag{
+			Name:   "edgerc",
+			Usage:  "Location of the credentials file",
+			Value:  dir,
+			EnvVar: "AKAMAI_EDGERC",
+		},
+		cli.StringFlag{
+			Name:   "section",
+			Usage:  "Section of the credentials file",
+			Value:  "default",
+			EnvVar: "AKAMAI_EDGERC_SECTION",
+		},
+	}
+
+	cmdFlags := []cli.Flag{
+		cli.BoolFlag{
 			Name:  "cpcode",
-			Usage: "CPCode(s) to Purge",
+			Usage: "Purge by CPCode instead (beta)",
 		},
 		cli.BoolFlag{
 			Name:  "production",
@@ -63,27 +86,38 @@ func main() {
 			Name:      "invalidate",
 			Usage:     "Invalidate content",
 			ArgsUsage: "[URL...] or [CP Codes...]",
-			Action:    invalidate,
-			Flags:     flags,
+			Action:    cmdInvalidate,
+			Flags:     cmdFlags,
 		},
 		{
 			Name:      "delete",
 			Usage:     "Delete content",
 			ArgsUsage: "[URL...] or [CP Codes...]",
-			Action:    delete,
-			Flags:     flags,
+			Action:    cmdDelete,
+			Flags:     cmdFlags,
+		},
+		{
+			Name:   "list",
+			Usage:  "List commands",
+			Action: cmdList,
 		},
 	}
 
 	app.Run(os.Args)
 }
 
-func invalidate(c *cli.Context) error {
+func cmdInvalidate(c *cli.Context) error {
 	return purge("invalidate", c)
 }
 
-func delete(c *cli.Context) error {
+func cmdDelete(c *cli.Context) error {
 	return purge("delete", c)
+}
+
+func cmdList(c *cli.Context) {
+	for _, command := range c.App.Commands {
+		fmt.Println(command.HelpName + "  ")
+	}
 }
 
 func purge(purgeType string, c *cli.Context) error {
@@ -157,4 +191,94 @@ func purge(purgeType string, c *cli.Context) error {
 	fmt.Println("... [" + color.GreenString("OK") + "] (URLs: " + color.BlueString("%d", len(body.Objects)) + ", ETA: " + color.BlueString("%d seconds", purge.EstimatedSeconds) + ")")
 
 	return nil
+}
+
+func setCliTemplates() {
+	cli.AppHelpTemplate = "" +
+		color.YellowString("Usage: \n") +
+		color.BlueString("	 {{if .UsageText}}"+
+			"{{.UsageText}}"+
+			"{{else}}"+
+			"{{.HelpName}} "+
+			"{{if .VisibleFlags}}[global flags]{{end}}"+
+			"{{if .Commands}} command [command flags]{{end}} "+
+			"{{if .ArgsUsage}}{{.ArgsUsage}}{{else}}[arguments...]{{end}}"+
+			"{{end}}") +
+
+		"{{if .Description}}\n\n" +
+		color.YellowString("Description:\n") +
+		"   {{.Description}}" +
+		"\n\n{{end}}" +
+
+		"{{if .VisibleCommands}}" +
+		color.YellowString("Commands:\n") +
+		"{{range .VisibleCategories}}" +
+		"{{if .Name}}" +
+		"{{.Name}}:" +
+		"{{end}}" +
+		"{{range .VisibleCommands}}" +
+		`   {{join .Names ", "}}{{"\t"}}{{.Usage}}{{"\n"}}` +
+		"{{end}}" +
+		"{{end}}" +
+		"\n{{end}}" +
+
+		"{{if .VisibleFlags}}" +
+		color.YellowString("Global Flags:\n") +
+		"{{range $index, $option := .VisibleFlags}}" +
+		"{{if $index}}\n{{end}}" +
+		"   {{$option}}" +
+		"{{end}}" +
+		"\n\n{{end}}" +
+
+		"{{if len .Authors}}" +
+		color.YellowString("Author{{with $length := len .Authors}}{{if ne 1 $length}}s{{end}}{{end}}:\n") +
+		"{{range $index, $author := .Authors}}{{if $index}}\n{{end}}" +
+		"   {{$author}}" +
+		"{{end}}" +
+		"\n\n{{end}}" +
+
+		"{{if .Copyright}}" +
+		color.YellowString("Copyright:\n") +
+		"   {{.Copyright}}" +
+		"{{end}}"
+
+	cli.CommandHelpTemplate = "" +
+		color.YellowString("Name: \n") +
+		"   {{.HelpName}} - {{.Usage}}\n\n" +
+
+		color.YellowString("Usage: \n") +
+		color.BlueString("   {{.HelpName}}{{if .VisibleFlags}} [command options]{{end}} {{if .ArgsUsage}}{{.ArgsUsage}}{{else}}[arguments...]{{end}}\n\n") +
+
+		"{{if .Category}}" +
+		color.YellowString("Type: \n") +
+		"   {{.Category}}\n\n{{end}}" +
+
+		"{{if .Description}}" +
+		color.YellowString("Description: \n") +
+		"   {{.Description}}\n\n{{end}}" +
+
+		"{{if .VisibleFlags}}" +
+		color.YellowString("Flags: \n") +
+		"{{range .VisibleFlags}}   {{.}}\n{{end}}{{end}}"
+
+	cli.SubcommandHelpTemplate = "" +
+		color.YellowString("Name: \n") +
+		"   {{.HelpName}} - {{.Usage}}\n\n" +
+
+		color.YellowString("Usage: \n") +
+		color.BlueString("   {{.HelpName}}{{if .VisibleFlags}} [command options]{{end}} {{if .ArgsUsage}}{{.ArgsUsage}}{{else}}[arguments...]{{end}}\n\n") +
+
+		color.YellowString("Commands:\n") +
+		"{{range .VisibleCategories}}" +
+		"{{if .Name}}" +
+		"{{.Name}}:" +
+		"{{end}}" +
+		"{{range .VisibleCommands}}" +
+		`{{join .Names ", "}}{{"\t"}}{{.Usage}}` +
+		"{{end}}\n\n" +
+		"{{end}}" +
+
+		"{{if .VisibleFlags}}" +
+		color.YellowString("Flags:\n") +
+		"{{range .VisibleFlags}}{{.}}\n{{end}}{{end}}"
 }

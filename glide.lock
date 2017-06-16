@@ -1,5 +1,5 @@
-hash: 2c98bbc9f5312396de9fd7fcae841e09c36db2afb76ab552f60a261bba2f8f69
-updated: 2017-06-14T16:15:31.594424179-07:00
+hash: 0d6507abb011e016e88c6e32448f042a25b95f1a086401af1894bdcb2f28b468
+updated: 2017-06-15T11:33:04.082062106-07:00
 imports:
 - name: github.com/akamai/AkamaiOPEN-edgegrid-golang
   version: dbb44beac0439f6e7df8cf3b127a14ccd6193acf
@@ -16,6 +16,8 @@ imports:
 - name: github.com/mattn/go-isatty
   version: 57fdcb988a5c543893cc61bce354a6e24ab70022
   repo: https://github.com/mattn/go-isatty
+- name: github.com/mitchellh/go-homedir
+  version: b8bc1bf767474819792c23f32d8286a45736f1c6
 - name: github.com/sirupsen/logrus
   version: 3ec0642a7fb6488f65b06f9040adc67e3990296a
 - name: github.com/tuvistavie/securerandom

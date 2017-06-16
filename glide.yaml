@@ -5,3 +5,4 @@ import:
   version: ^1.19.1
 - package: github.com/fatih/color
   version: ^1.5.0
+- package: github.com/mitchellh/go-homedir
