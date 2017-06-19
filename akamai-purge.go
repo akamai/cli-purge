@@ -218,7 +218,7 @@ func setCliTemplates() {
 			"{{if .VisibleFlags}}[global flags]{{end}}"+
 			"{{if .Commands}} command [command flags]{{end}} "+
 			"{{if .ArgsUsage}}{{.ArgsUsage}}{{else}}[arguments...]{{end}}"+
-			"{{end}}") +
+			"\n\n{{end}}") +
 
 		"{{if .Description}}\n\n" +
 		color.YellowString("Description:\n") +
@@ -226,13 +226,13 @@ func setCliTemplates() {
 		"\n\n{{end}}" +
 
 		"{{if .VisibleCommands}}" +
-		color.YellowString("Commands:\n") +
+		color.YellowString("Built-In Commands:\n") +
 		"{{range .VisibleCategories}}" +
 		"{{if .Name}}" +
-		"{{.Name}}:" +
+		"\n{{.Name}}\n" +
 		"{{end}}" +
 		"{{range .VisibleCommands}}" +
-		`   {{join .Names ", "}}{{"\t"}}{{.Usage}}{{"\n"}}` +
+		`   {{join .Names ", "}}{{"\n"}}` +
 		"{{end}}" +
 		"{{end}}" +
 		"\n{{end}}" +
@@ -255,7 +255,7 @@ func setCliTemplates() {
 		"{{if .Copyright}}" +
 		color.YellowString("Copyright:\n") +
 		"   {{.Copyright}}" +
-		"{{end}}"
+		"{{end}}\n"
 
 	cli.CommandHelpTemplate = "" +
 		color.YellowString("Name: \n") +
