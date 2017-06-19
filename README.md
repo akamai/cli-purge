@@ -11,7 +11,7 @@ under five seconds.
 To install, use [Akamai CLI](https://github.com/akamai/cli):
 
 ```
-akamai get akamai/cli-purge
+akamai get purge
 ```
 
 You may also use this as a stand-alone command by simply downloading the
