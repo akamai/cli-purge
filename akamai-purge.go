@@ -78,7 +78,7 @@ func main() {
 		cli.StringFlag{
 			Name:   "section",
 			Usage:  "Section of the credentials file",
-			Value:  "default",
+			Value:  "ccu",
 			EnvVar: "AKAMAI_EDGERC_SECTION",
 		},
 	}
