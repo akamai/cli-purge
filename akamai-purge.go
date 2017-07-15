@@ -20,6 +20,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/akamai/AkamaiOPEN-edgegrid-golang/client-v1"
 	"github.com/akamai/AkamaiOPEN-edgegrid-golang/edgegrid"
 	"github.com/fatih/color"
 	"github.com/mitchellh/go-homedir"
@@ -153,11 +154,6 @@ func purge(purgeType string, c *cli.Context) error {
 		return cli.NewExitError(err.Error(), 1)
 	}
 
-	client, err := edgegrid.NewClient(nil, &config)
-	if err != nil {
-		return cli.NewExitError(err.Error(), 1)
-	}
-
 	url := fmt.Sprintf(
 		"/ccu/v3/%s/%s/%s",
 		purgeType,
@@ -187,18 +183,23 @@ func purge(purgeType string, c *cli.Context) error {
 		}
 	}
 
-	res, err := client.PostJSON(url, body)
+	req, err := client.NewJSONRequest(config, "POST", url, body)
 	if err != nil {
 		return cli.NewExitError(err.Error(), 1)
 	}
 
-	if res.IsError() {
+	res, err := client.Do(config, req)
+	if err != nil {
+		return cli.NewExitError(err.Error(), 1)
+	}
+
+	if client.IsError(res) {
 		fmt.Println("... [" + color.RedString("FAIL") + "]")
-		return cli.NewExitError(edgegrid.NewAPIError(res).Error(), 1)
+		return cli.NewExitError(client.NewAPIError(res).Error(), 1)
 	}
 
 	purge := &CCUv3Purge{}
-	if err = res.BodyJSON(purge); err != nil {
+	if err = client.BodyJSON(res, purge); err != nil {
 		fmt.Println("... [" + color.RedString("FAIL") + "]")
 		return cli.NewExitError(err.Error(), 1)
 	}
