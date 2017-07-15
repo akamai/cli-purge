@@ -1,11 +1,10 @@
 hash: 0d6507abb011e016e88c6e32448f042a25b95f1a086401af1894bdcb2f28b468
-updated: 2017-06-15T11:33:04.082062106-07:00
+updated: 2017-07-14T23:47:30.078648726-07:00
 imports:
 - name: github.com/akamai/AkamaiOPEN-edgegrid-golang
-  version: dbb44beac0439f6e7df8cf3b127a14ccd6193acf
+  version: 8a0cf9507645a1018cd77d316fdfec00ed4b5462
   subpackages:
   - edgegrid
-  - edgegrid/json
 - name: github.com/fatih/color
   version: 570b54cabe6b8eb0bc2dfce68d964677d63b5260
 - name: github.com/go-ini/ini
@@ -24,12 +23,6 @@ imports:
   version: 15512123a948d62f6361bd84818e11f2ad84059a
 - name: github.com/urfave/cli
   version: 0bdeddeeb0f650497d603c4ad7b20cfe685682f6
-- name: github.com/xeipuuv/gojsonpointer
-  version: 6fe8760cad3569743d51ddbb243b26f8456742dc
-- name: github.com/xeipuuv/gojsonreference
-  version: e02fc20de94c78484cd5ffb007f8af96be030a45
-- name: github.com/xeipuuv/gojsonschema
-  version: 0c8571ac0ce161a5feb57375a9cdf148c98c0f70
 - name: golang.org/x/sys
   version: 9d4e42a20653790449273b3c85e67d6d8bae6e2e
   subpackages:
