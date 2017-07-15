@@ -54,7 +54,7 @@ func main() {
 	app.HelpName = app_name
 	app.Usage = "A CLI for Purge"
 	app.Description = "Purge Content from the Edge. URLs/CPCodes may be specified as a list of arguments, or piped in via STDIN"
-	app.Version = "0.1.0"
+	app.Version = "0.2.0"
 	app.Copyright = "Copyright (C) Akamai Technologies, Inc"
 	app.Authors = []cli.Author{
 		{
