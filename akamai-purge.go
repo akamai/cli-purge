@@ -213,16 +213,16 @@ func purge(purgeType string, c *cli.Context) error {
 func setCliTemplates() {
 	cli.AppHelpTemplate = "" +
 		color.YellowString("Usage: \n") +
-		color.BlueString("	 {{if .UsageText}}"+
+		color.BlueString("	{{if .UsageText}}"+
 			"{{.UsageText}}"+
 			"{{else}}"+
 			"{{.HelpName}} "+
 			"{{if .VisibleFlags}}[global flags]{{end}}"+
 			"{{if .Commands}} command [command flags]{{end}} "+
 			"{{if .ArgsUsage}}{{.ArgsUsage}}{{else}}[arguments...]{{end}}"+
-			"\n\n{{end}}") +
+			"\n{{end}}") +
 
-		"{{if .Description}}\n\n" +
+		"{{if .Description}}\n" +
 		color.YellowString("Description:\n") +
 		"   {{.Description}}" +
 		"\n\n{{end}}" +
@@ -234,10 +234,16 @@ func setCliTemplates() {
 		"\n{{.Name}}\n" +
 		"{{end}}" +
 		"{{range .VisibleCommands}}" +
-		`   {{join .Names ", "}}{{"\n"}}` +
+		color.GreenString("  {{.Name}}") +
+		"{{if .Aliases}} ({{ $length := len .Aliases }}{{if eq $length 1}}alias:{{else}}aliases:{{end}} " +
+		"{{range $index, $alias := .Aliases}}" +
+		"{{if $index}}, {{end}}" +
+		color.GreenString("{{$alias}}") +
+		"{{end}}" +
+		"){{end}}\n" +
 		"{{end}}" +
 		"{{end}}" +
-		"\n{{end}}" +
+		"{{end}}\n" +
 
 		"{{if .VisibleFlags}}" +
 		color.YellowString("Global Flags:\n") +
@@ -247,21 +253,13 @@ func setCliTemplates() {
 		"{{end}}" +
 		"\n\n{{end}}" +
 
-		"{{if len .Authors}}" +
-		color.YellowString("Author{{with $length := len .Authors}}{{if ne 1 $length}}s{{end}}{{end}}:\n") +
-		"{{range $index, $author := .Authors}}{{if $index}}\n{{end}}" +
-		"   {{$author}}" +
-		"{{end}}" +
-		"\n\n{{end}}" +
-
 		"{{if .Copyright}}" +
-		color.YellowString("Copyright:\n") +
-		"   {{.Copyright}}" +
+		color.HiBlackString("{{.Copyright}}") +
 		"{{end}}\n"
 
 	cli.CommandHelpTemplate = "" +
 		color.YellowString("Name: \n") +
-		"   {{.HelpName}} - {{.Usage}}\n\n" +
+		"   {{.HelpName}}\n\n" +
 
 		color.YellowString("Usage: \n") +
 		color.BlueString("   {{.HelpName}}{{if .VisibleFlags}} [command options]{{end}} {{if .ArgsUsage}}{{.ArgsUsage}}{{else}}[arguments...]{{end}}\n\n") +
@@ -276,7 +274,9 @@ func setCliTemplates() {
 
 		"{{if .VisibleFlags}}" +
 		color.YellowString("Flags: \n") +
-		"{{range .VisibleFlags}}   {{.}}\n{{end}}{{end}}"
+		"{{range .VisibleFlags}}   {{.}}\n\n{{end}}{{end}}" +
+
+		"{{if .UsageText}}{{.UsageText}}\n{{end}}"
 
 	cli.SubcommandHelpTemplate = "" +
 		color.YellowString("Name: \n") +
