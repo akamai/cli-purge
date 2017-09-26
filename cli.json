@@ -5,7 +5,7 @@
   "commands": [
     {
       "name": "purge",
-      "version": "0.2.0",
+      "version": "0.2.1",
       "description": "Purge content from the Edge",
       "bin": "https://github.com/akamai/cli-purge/releases/download/{{.Version}}/akamai-{{.Name}}-{{.Version}}-{{.OS}}{{.Arch}}{{.BinSuffix}}"
     }
