@@ -68,6 +68,7 @@ func main() {
 	}
 
 	dir, _ := homedir.Dir()
+	dir += string(os.PathSeparator) + ".edgerc"
 	app.Flags = []cli.Flag{
 		cli.StringFlag{
 			Name:   "edgerc",
@@ -149,7 +150,7 @@ func purge(purgeType string, c *cli.Context) error {
 		purgeBy = "cpcode"
 	}
 
-	config, err := edgegrid.Init("", c.GlobalString("section"))
+	config, err := edgegrid.Init(c.GlobalString("edgerc"), c.GlobalString("section"))
 	if err != nil {
 		return cli.NewExitError(err.Error(), 1)
 	}
