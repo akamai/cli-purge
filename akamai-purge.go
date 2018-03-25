@@ -128,6 +128,12 @@ func main() {
 		},
 	}
 
+	app.EnableBashCompletion = true
+	cli.BashCompletionFlag = cli.BoolFlag{
+		Name:   "generate-auto-complete",
+		Hidden: true,
+	}
+
 	app.Run(os.Args)
 }
 
