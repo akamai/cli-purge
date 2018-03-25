@@ -1,20 +1,20 @@
-hash: 0d6507abb011e016e88c6e32448f042a25b95f1a086401af1894bdcb2f28b468
-updated: 2017-07-14T23:47:30.078648726-07:00
+hash: c7374edc4d87bf355cd56b063eff9af9ef558352659c6afdf69384461e8be02b
+updated: 2018-03-26T03:14:38.124231907+09:00
 imports:
 - name: github.com/akamai/AkamaiOPEN-edgegrid-golang
-  version: 8a0cf9507645a1018cd77d316fdfec00ed4b5462
+  version: e80cc078177f546f3e932760597f7e274dc492b8
   subpackages:
+  - client-v1
   - edgegrid
+  - jsonhooks-v1
 - name: github.com/fatih/color
-  version: 570b54cabe6b8eb0bc2dfce68d964677d63b5260
+  version: 507f6050b8568533fb3f5504de8e5205fa62a114
 - name: github.com/go-ini/ini
-  version: d3de07a94d22b4a0972deb4b96d790c2c0ce8333
+  version: 6333e38ac20b8949a8dd68baa3650f4dee8f39f0
 - name: github.com/mattn/go-colorable
   version: 5411d3eea5978e6cdc258b30de592b60df6aba96
-  repo: https://github.com/mattn/go-colorable
 - name: github.com/mattn/go-isatty
-  version: 57fdcb988a5c543893cc61bce354a6e24ab70022
-  repo: https://github.com/mattn/go-isatty
+  version: 0360b2af4f38e8d38c7fce2a9f4e702702d73a39
 - name: github.com/mitchellh/go-homedir
   version: b8bc1bf767474819792c23f32d8286a45736f1c6
 - name: github.com/sirupsen/logrus
@@ -22,7 +22,7 @@ imports:
 - name: github.com/tuvistavie/securerandom
   version: 15512123a948d62f6361bd84818e11f2ad84059a
 - name: github.com/urfave/cli
-  version: 0bdeddeeb0f650497d603c4ad7b20cfe685682f6
+  version: cfb38830724cc34fedffe9a2a29fb54fa9169cd1
 - name: golang.org/x/sys
   version: 9d4e42a20653790449273b3c85e67d6d8bae6e2e
   subpackages:
