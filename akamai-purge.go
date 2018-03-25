@@ -28,7 +28,7 @@ import (
 )
 
 const (
-	VERSION = "0.2.1"
+	VERSION = "0.3.0"
 )
 
 type CCUv3PurgeBody struct {
@@ -91,7 +91,11 @@ func main() {
 	cmdFlags := []cli.Flag{
 		cli.BoolFlag{
 			Name:  "cpcode",
-			Usage: "Purge by CPCode instead (beta)",
+			Usage: "Purge by CPCode",
+		},
+		cli.BoolFlag{
+			Name:  "tag",
+			Usage: "Purge by cache tag",
 		},
 		cli.BoolFlag{
 			Name:  "production",
@@ -154,6 +158,10 @@ func purge(purgeType string, c *cli.Context) error {
 		purgeBy = "cpcode"
 	}
 
+	if c.IsSet("tag") {
+		purgeBy = "tag"
+	}
+
 	config, err := edgegrid.Init(c.GlobalString("edgerc"), c.GlobalString("section"))
 	if err != nil {
 		return cli.NewExitError(err.Error(), 1)
@@ -184,7 +192,7 @@ func purge(purgeType string, c *cli.Context) error {
 
 		if len(body.Objects) == 0 {
 			fmt.Println("... [" + color.RedString("FAIL") + "]")
-			return cli.NewExitError("You must specify at least one URL to purge.", 1)
+			return cli.NewExitError(fmt.Sprintf("You must specify at least one %s to purge.", purgeBy), 1)
 		}
 	}
 
