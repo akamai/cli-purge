@@ -7,3 +7,4 @@ import:
 - package: github.com/fatih/color
   version: ^1.5.0
 - package: github.com/mitchellh/go-homedir
+- package: github.com/akamai/cli-common-golang

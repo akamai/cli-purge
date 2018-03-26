@@ -13,27 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package main
 
-import (
-	"os"
+import "github.com/urfave/cli"
 
-	akamai "github.com/akamai/cli-common-golang"
-)
-
-const (
-	VERSION = "0.3.0"
-)
-
-func main() {
-	akamai.CreateApp(
-		"purge",
-		"A CLI for Purge",
-		"Purge Content from the Edge. URLs/CPCodes/Tags may be specified as a list of arguments, or piped in via STDIN",
-		VERSION,
-		"ccu",
-		commandLocator,
-	)
-
-	akamai.App.Run(os.Args)
+func cmdInvalidate(c *cli.Context) error {
+	return purge("invalidate", c)
 }

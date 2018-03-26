@@ -1,18 +1,23 @@
-hash: c7374edc4d87bf355cd56b063eff9af9ef558352659c6afdf69384461e8be02b
-updated: 2018-03-26T03:14:38.124231907+09:00
+hash: d1c98e27ad47b3562d185a8c7fe7eb67f0464220a89a8e7c0419459e95ad6017
+updated: 2018-03-26T16:58:16.234757461-07:00
 imports:
 - name: github.com/akamai/AkamaiOPEN-edgegrid-golang
-  version: e80cc078177f546f3e932760597f7e274dc492b8
+  version: a494eba1efa1f38338393727dff63389a6a66534
   subpackages:
+  - ccu-v3
   - client-v1
   - edgegrid
   - jsonhooks-v1
+- name: github.com/akamai/cli-common-golang
+  version: 57308d48c8b24cad7be973455961fe321f22616a
+- name: github.com/briandowns/spinner
+  version: 48dbb65d7bd5c74ab50d53d04c949f20e3d14944
 - name: github.com/fatih/color
   version: 507f6050b8568533fb3f5504de8e5205fa62a114
 - name: github.com/go-ini/ini
   version: 6333e38ac20b8949a8dd68baa3650f4dee8f39f0
 - name: github.com/mattn/go-colorable
-  version: 5411d3eea5978e6cdc258b30de592b60df6aba96
+  version: efa589957cd060542a26d2dd7832fd6a6c6c3ade
 - name: github.com/mattn/go-isatty
   version: 0360b2af4f38e8d38c7fce2a9f4e702702d73a39
 - name: github.com/mitchellh/go-homedir
