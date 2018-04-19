@@ -16,7 +16,7 @@
   branch = "master"
   name = "github.com/akamai/cli-common-golang"
   packages = ["."]
-  revision = "0a4a1fec97d5a5dbfceb7ed6cfc8159aa7679d5c"
+  revision = "31d6ebdd75c771ffbc5136f649ad6d0930bad42b"
 
 [[projects]]
   name = "github.com/briandowns/spinner"
