@@ -44,14 +44,14 @@ var commandLocator akamai.CommandLocator = func() ([]cli.Command, error) {
 		{
 			Name:      "invalidate",
 			Usage:     "Invalidate content",
-			ArgsUsage: "[URL]... or [CP Codes]... or [Cache Tags]...",
+			ArgsUsage: "[URL]... or [CP Code]... or [Cache Tag]...",
 			Action:    cmdInvalidate,
 			Flags:     cmdFlags,
 		},
 		{
 			Name:      "delete",
 			Usage:     "Delete content",
-			ArgsUsage: "[URL]... or [CP Codes]... or [Cache Tags]...",
+			ArgsUsage: "[URL]... or [CP Code]... or [Cache Tag]...",
 			Action:    cmdDelete,
 			Flags:     cmdFlags,
 		},

@@ -36,7 +36,7 @@ If you want to compile it from source, you will need Go 1.7 or later, and the [G
 ## Usage
 
 ```
-akamai-purge [global flags] command [--cpcode] [URLs/CPCodes...]
+akamai purge [global flags] command [--cpcode --tag] [URLs/CPCodes/Cache Tags...]
 ```
 
 You may specify URLs/CPCodes as a list of arguments, or pipe in a newline-delimited list via STDIN
