@@ -47,6 +47,7 @@ var commandLocator akamai.CommandLocator = func() ([]cli.Command, error) {
 			ArgsUsage: "[URL]... or [CP Code]... or [Cache Tag]...",
 			Action:    cmdInvalidate,
 			Flags:     cmdFlags,
+			BashComplete: akamai.DefaultAutoComplete,
 		},
 		{
 			Name:      "delete",
@@ -54,11 +55,13 @@ var commandLocator akamai.CommandLocator = func() ([]cli.Command, error) {
 			ArgsUsage: "[URL]... or [CP Code]... or [Cache Tag]...",
 			Action:    cmdDelete,
 			Flags:     cmdFlags,
+			BashComplete: akamai.DefaultAutoComplete,
 		},
 		{
 			Name:   "list",
 			Usage:  "List commands",
 			Action: akamai.CmdList,
+			BashComplete: akamai.DefaultAutoComplete,
 		},
 		cli.Command{
 			Name:         "help",
