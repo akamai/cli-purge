@@ -11,23 +11,23 @@ under five seconds.
 To install, use [Akamai CLI](https://github.com/akamai/cli):
 
 ```
-akamai get purge
+akamai install purge
 ```
 
-You may also use this as a stand-alone command by simply downloading the
+You may also use this as a stand-alone command by downloading the
 [latest release binary](https://github.com/akamai/cli-purge/releases)
 for your system, or by cloning this repository and compiling it yourself.
 
 ### Compiling from Source
 
-If you want to compile it from source, you will need Go 1.7 or later, and the [Glide](https://glide.sh) package manager installed:
+If you want to compile it from source, you will need Go 1.7 or later, and the [Dep](https://golang.github.io/dep/) package manager installed:
 
 1. Fetch the package:  
   `go get github.com/akamai/cli-purge`
 2. Change to the package directory:  
   `cd $GOPATH/src/github.com/akamai/cli-purge`
-3. Install dependencies using Glide:  
-  `glide install`
+3. Install dependencies using `dep`:  
+  `dep ensure`
 4. Compile the binary:  
   - Linux/macOS/*nix: `go build -o akamai-purge`
   - Windows: `go build -o akamai-purge.exe`
