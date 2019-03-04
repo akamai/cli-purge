@@ -28,8 +28,6 @@ import (
 )
 
 func purge(purgeType string, c *cli.Context) error {
-	akamai.StartSpinner("Purging...", fmt.Sprintf("Purging...... [%s]", color.GreenString("OK")))
-
 	purgeByType := "url"
 
 	network := "production"
@@ -56,6 +54,11 @@ func purge(purgeType string, c *cli.Context) error {
 	if c.Args().Present() {
 		objects = c.Args()
 	} else {
+		fmt.Fprintln(
+			akamai.App.ErrWriter,
+			color.BlueString("Reading from STDIN (Ctrl+D to end)"),
+		)
+
 		s := bufio.NewScanner(os.Stdin)
 		for s.Scan() {
 			url := s.Text()
@@ -66,11 +69,11 @@ func purge(purgeType string, c *cli.Context) error {
 		}
 
 		if len(objects) == 0 {
-			akamai.StopSpinnerFail()
 			return cli.NewExitError(color.RedString("You must specify at least one %s to purge.", purgeByType), 1)
 		}
 	}
 
+	akamai.StartSpinner("Purging...", fmt.Sprintf("Purging...... [%s]", color.GreenString("OK")))
 	purge := ccu.NewPurge(objects)
 	var res *ccu.PurgeResponse
 	if purgeType == "invalidate" {
@@ -96,6 +99,12 @@ func purge(purgeType string, c *cli.Context) error {
 		color.BlueString("%d", len(purge.Objects)),
 		plural,
 		color.BlueString("%d", res.EstimatedSeconds),
+	)
+
+	fmt.Fprintf(
+		akamai.App.ErrWriter,
+		"Purge ID: %s\n",
+		color.BlueString(res.PurgeID),
 	)
 
 	return nil
