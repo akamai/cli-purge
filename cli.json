@@ -1,7 +1,7 @@
 {
   "name": "akamai/purge",
   "requirements": {
-    "go": "1.8.0"
+    "go": "1.16.0"
   },
   "commands": [
     {
