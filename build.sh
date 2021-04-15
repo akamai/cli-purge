@@ -21,6 +21,8 @@ mkdir -p build
 
 GOOS=darwin GOARCH=amd64 go build -o build/akamai-purge-$1-macamd64 .
 shasum -a 256 build/akamai-purge-$1-macamd64 | awk '{print $1}' > build/akamai-purge-$1-macamd64.sig
+GOOS=darwin GOARCH=arm64 go build -o build/akamai-purge-$1-macarm64 .
+shasum -a 256 build/akamai-purge-$1-macarm64 | awk '{print $1}' > build/akamai-purge-$1-macarm64.sig
 GOOS=linux GOARCH=amd64 go build -o build/akamai-purge-$1-linuxamd64 .
 shasum -a 256 build/akamai-purge-$1-linuxamd64 | awk '{print $1}' > build/akamai-purge-$1-linuxamd64.sig
 GOOS=linux GOARCH=386 go build -o build/akamai-purge-$1-linux386 .
