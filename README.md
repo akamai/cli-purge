@@ -20,17 +20,19 @@ for your system, or by cloning this repository and compiling it yourself.
 
 ### Compiling from Source
 
-If you want to compile it from source, you will need Go 1.7 or later, and the [Dep](https://golang.github.io/dep/) package manager installed:
+If you want to compile it from source, you will need Go 1.16 or later:
 
-1. Fetch the package:  
+1. Fetch the package:
   `go get github.com/akamai/cli-purge`
-2. Change to the package directory:  
+2. Change to the package directory:
   `cd $GOPATH/src/github.com/akamai/cli-purge`
-3. Install dependencies using `dep`:  
-  `dep ensure`
-4. Compile the binary:  
-  - Linux/macOS/*nix: `go build -o akamai-purge`
-  - Windows: `go build -o akamai-purge.exe`
+3. Install dependencies:
+  `go mod vendor`
+4. Compile the binary:
+
+    - Linux/macOS/*nix: `go build -mod=vendor -o akamai-purge`
+    - Windows: `go build -mod=vendor -o akamai-purge.exe`
+
 5. Move the binary (`akamai-purge` or `akamai-purge.exe`) in to your `PATH`
 
 ## Usage
