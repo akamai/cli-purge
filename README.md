@@ -52,3 +52,14 @@ You may specify URLs/CPCodes as a list of arguments, or pipe in a newline-delimi
 - `--section value` — Section of the credentials file (default: "ccu") [$AKAMAI_EDGERC_SECTION]
 - `--help`, `-h` — show help
 - `--version`, `-v` — print the version
+
+### Examples
+- Invalidate on staging network using *cpcode*: 
+
+   `akamai purge --section ccu invalidate --staging --cpcode <<your awesome cpcode>>`
+- Invalidate on staging network using *URL* and passing the location of `.edgerc` file, section within `.edgerc` file. Please note that we are referring to `default` section in the below example: 
+
+  `akamai purge --edgerc ~/.edgerc --section default invalidate <<your awesome url>> --staging`
+- Invalidate on staging network using *tag*: 
+
+   `akamai purge --section ccu invalidate --staging --tag <<your awesome tag>>`
