@@ -21,13 +21,10 @@ for your system, or by cloning this repository and compiling it yourself.
 If you want to compile it from source, you will need Go 1.14 or later:
 
 1. Create a clone of the target repository:  
-  `git clone https://github.com/akamai/cli-purge.git $GOPATH/cli-purge`
-2. Change to the package directory:  
-  `cd $GOPATH/cli-purge`
-4. Compile the binary:  
+  `git clone https://github.com/akamai/cli-purge.git`
+2. Change to the package directory and compile the binary:  
   - Linux/macOS/*nix: `go build -o akamai-purge`
   - Windows: `go build -o akamai-purge.exe`
-5. Move the binary (`akamai-purge` or `akamai-purge.exe`) in to your `PATH`
 
 ## Usage
 
