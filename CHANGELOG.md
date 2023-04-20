@@ -5,4 +5,4 @@
 ### Features/Enhancements
 
 * Add M1 support
-* Migrate to go 1.14
+* Migrate to go 1.18
