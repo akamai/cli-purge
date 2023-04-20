@@ -18,7 +18,7 @@ for your system, or by cloning this repository and compiling it yourself.
 
 ### Compiling from Source
 
-If you want to compile it from source, you will need Go 1.14 or later:
+If you want to compile it from source, you will need Go 1.18 or later:
 
 1. Create a clone of the target repository:  
   `git clone https://github.com/akamai/cli-purge.git`
