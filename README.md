@@ -1,10 +1,8 @@
 # Akamai CLI for Purge
 
-Akamai CLI for Purge allows you to purge cached content from the Edge using
-FastPurge (CCUv3).
+Akamai CLI for Purge allows you to purge cached content from the Edge using FastPurge (CCUv3).
 
-FastPurge will typically invalidate (recommended), or delete cached content in
-under five seconds.
+FastPurge will typically invalidate (recommended), or delete cached content in under five seconds.
 
 ## Install
 
@@ -20,18 +18,13 @@ for your system, or by cloning this repository and compiling it yourself.
 
 ### Compiling from Source
 
-If you want to compile it from source, you will need Go 1.7 or later, and the [Dep](https://golang.github.io/dep/) package manager installed:
+If you want to compile it from source, you will need Go 1.18 or later:
 
-1. Fetch the package:  
-  `go get github.com/akamai/cli-purge`
-2. Change to the package directory:  
-  `cd $GOPATH/src/github.com/akamai/cli-purge`
-3. Install dependencies using `dep`:  
-  `dep ensure`
-4. Compile the binary:  
+1. Create a clone of the target repository:  
+  `git clone https://github.com/akamai/cli-purge.git`
+2. Change to the package directory and compile the binary:  
   - Linux/macOS/*nix: `go build -o akamai-purge`
   - Windows: `go build -o akamai-purge.exe`
-5. Move the binary (`akamai-purge` or `akamai-purge.exe`) in to your `PATH`
 
 ## Usage
 

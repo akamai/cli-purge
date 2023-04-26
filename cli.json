@@ -1,12 +1,12 @@
 {
   "name": "akamai/purge",
   "requirements": {
-    "go": "1.8.0"
+    "go": "1.18.0"
   },
   "commands": [
     {
       "name": "purge",
-      "version": "1.0.1",
+      "version": "1.1.0",
       "description": "Purge content from the Edge",
       "bin": "https://github.com/akamai/cli-purge/releases/download/{{.Version}}/akamai-{{.Name}}-{{.Version}}-{{.OS}}{{.Arch}}{{.BinSuffix}}",
       "auto-complete": true
